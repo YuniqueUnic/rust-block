@@ -8,7 +8,7 @@ pub enum IntBlock { }
 /// `int32_t (^)(int32_t)`.
 pub enum AddBlock { }
 
-extern {
+extern "C" {
     /// Returns a pointer to a global `IntBlock` that returns 7.
     pub fn get_int_block() -> *mut IntBlock;
     /// Returns a pointer to a copied `IntBlock` that returns `i`.
@@ -24,22 +24,4 @@ extern {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_int_block() {
-        unsafe {
-            assert!(invoke_int_block(get_int_block()) == 7);
-            assert!(invoke_int_block(get_int_block_with(13)) == 13);
-        }
-    }
-
-    #[test]
-    fn test_add_block() {
-        unsafe {
-            assert!(invoke_add_block(get_add_block(), 5) == 12);
-            assert!(invoke_add_block(get_add_block_with(3), 5) == 8);
-        }
-    }
-}
+mod tests;

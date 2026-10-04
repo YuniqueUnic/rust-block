@@ -1,4 +1,5 @@
 [package]
+edition = "2015"
 name = "block"
 version = "0.1.6"
 authors = ["Steven Sheldon"]
